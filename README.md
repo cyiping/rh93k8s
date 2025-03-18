@@ -208,7 +208,7 @@ http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kube
 ✅ **提供完整的 Worker 加入方式與測試指令**\
 ✅ **新增關閉 Swap 及 SELinux 步驟，確保 Kubernetes 正常運作**
 
-這樣你就可以 **快速部署一個可管理的 Kubernetes 叢集！** 🚀
+
 
 
 
