@@ -169,5 +169,5 @@ http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kube
 ✅ **已設定 `service-cluster-ip-range=10.96.0.0/22` 和 `cluster-cidr=100.64.0.0/10`**  
 ✅ **提供完整的 Worker 加入方式與測試指令**  
 
-這樣你就可以 **快速部署一個可管理的 Kubernetes 叢集！** 🚀
+
 
