@@ -1,4 +1,4 @@
-# New install in Nokia lab
+# New install in Kia の Lab
 
 ## RHEL 9.3 部署 Kubernetes 1.32（含 Flannel、Metrics Server、Dashboard）
 
