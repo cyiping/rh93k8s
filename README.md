@@ -105,7 +105,6 @@ sudo kubeadm init \
   --pod-network-cidr=100.64.0.0/10 \
   --service-cluster-ip-range=10.96.0.0/22
 
---apiserver-advertise-address 0.0.0.0
 
 ```
 
