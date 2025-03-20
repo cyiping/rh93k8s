@@ -14,7 +14,7 @@
 
 ---
 
-## **步驟 1：關閉 Swap 及 SELinux**
+## **步驟 1：關閉 Swap 及 SELinux ＆ 網路前置作業**
 
 ```bash
 # 關閉 Swap
@@ -28,6 +28,19 @@ sudo setenforce 0
 
 # 永久禁用 SELinux
 sudo sed -i 's/^SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
+
+# 網路前置作業
+cat <<EOF > /etc/sysctl.d/k8s.conf
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+EOF
+
+sysctl --system
+
+yum install -y ipvsadm conntrack sysstat curl
+
+modprobe br_netfilter && modprobe ip_vs
+
 ```
 
 ---
