@@ -44,6 +44,10 @@ containerd config default | sudo tee /etc/containerd/config.toml
 
 # 啟用 containerd
 sudo systemctl enable --now containerd
+
+＃ 安裝 podman
+sudo yum install -y podman
+
 ```
 
 ---
