@@ -101,7 +101,7 @@ MASTER_IP="192.168.1.100"
 # 初始化 Kubernetes
 sudo kubeadm init \
 #  --apiserver-advertise-address=$MASTER_IP \
-  --apiserver-advertise-address=0.0.0.0 \
+  --apiserver-advertise-address=0.0.0.0 \     # 測試用
   --pod-network-cidr=100.64.0.0/10 \
   --service-cluster-ip-range=10.96.0.0/22
 
