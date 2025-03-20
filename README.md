@@ -230,12 +230,12 @@ cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 chown $(id -u):$(id -g) $HOME/.kube/config
 
 ## **常用指令**
-kubectl get nodes
-kubectl get nodes -o wide
-kubectl get nodes
-kubectl get pods --all-namespaces
-kubectl get nodes
-kubectl get nodes -o wide
+* kubectl get nodes
+* kubectl get nodes -o wide
+* kubectl get nodes
+* kubectl get pods --all-namespaces
+* kubectl get nodes
+* kubectl get nodes -o wide
 
 ---
 
