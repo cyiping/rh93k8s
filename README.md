@@ -223,6 +223,21 @@ http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kube
 
 輸入剛剛取得的 Token，即可登入 **Kubernetes Dashboard**。
 
+
+---
+## **環境設定**
+mkdir -p $HOME/.kube
+cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+chown $(id -u):$(id -g) $HOME/.kube/config
+
+## **常用指令**
+kubectl get nodes
+kubectl get nodes -o wide
+kubectl get nodes
+kubectl get pods --all-namespaces
+kubectl get nodes
+kubectl get nodes -o wide
+
 ---
 
 ## **結論**
