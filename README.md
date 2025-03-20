@@ -29,6 +29,10 @@ sudo setenforce 0
 # 永久禁用 SELinux
 sudo sed -i 's/^SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
 
+＃ 關閉防火牆
+systemctl stop firewalld
+systemctl disable firewalld
+
 # 網路前置作業
 cat <<EOF > /etc/sysctl.d/k8s.conf
 net.bridge.bridge-nf-call-ip6tables = 1
