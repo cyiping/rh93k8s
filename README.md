@@ -44,9 +44,17 @@ yum install -y ipvsadm conntrack sysstat curl
 
 modprobe br_netfilter && modprobe ip_vs
 
-## 無法 ssh login 目前解法參照
-https://blog.csdn.net/yhl18931306541/article/details/144724718
-方法二
+## 無法 ssh login 解法
+[root@master-01 ~]# yum -y install  openssh-server
+
+[root@master-01 ~]# rpm -qa | grep openss
+openssh-8.7p1-43.el9.x86_64
+openssh-server-8.7p1-43.el9.x86_64
+openssh-clients-8.7p1-43.el9.x86_64
+openssl-libs-3.2.2-6.el9_5.x86_64
+openssl-3.2.2-6.el9_5.x86_64
+
+
 
 ```
 
