@@ -40,6 +40,10 @@ EOF
 
 sysctl --system
 
+# 註冊 RedHat系統
+subscription-manager register
+
+## 安裝套件
 yum install -y ipvsadm conntrack sysstat curl
 
 modprobe br_netfilter && modprobe ip_vs
@@ -65,6 +69,8 @@ openssl-3.2.2-6.el9_5.x86_64
 # Add the Docker repository (since containerd.io is part of Docker's dependencies)
 sudo yum install -y yum-utils
 sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+
+---- part 1 ----
 
 
 # 安裝 containerd
