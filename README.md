@@ -89,8 +89,6 @@ systemctl status containerd
 
 systemctl start containerd
 
-
-
 ＃ 安裝 podman
 sudo yum install -y podman
 
@@ -136,7 +134,8 @@ kubeadm config images pull --config=init-config.yaml
 # 4. 正式初始化 Kubernetes 叢集
 kubeadm init --config=init-config.yaml
 
-kubeadm init --cri-socket=unix:///var/run/containerd/containerd.sock
+systemctl enable kubelet
+
 
 
 
@@ -150,7 +149,7 @@ sudo kubeadm init \
   --pod-network-cidr=100.64.0.0/10 \
   --service-cluster-ip-range=10.96.0.0/22
 
-sudo kubeadm init --apiserver-advertise-address=0.0.0.0 --pod-network-cidr=100.64.0.0/10 --service-cidr=10.96.0.0/22 --v=5
+sudo kubeadm init --apiserver-advertise-address=0.0.0.0 --pod-network-cidr=100.64.0.0/10 --service-cidr=10.96.0.0/22  --cri-socket=unix:///var/run/containerd/containerd.sock --v=5
 
 
 ```
