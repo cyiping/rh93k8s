@@ -83,6 +83,14 @@ containerd config default | sudo tee /etc/containerd/config.toml
 # 啟用 containerd
 sudo systemctl enable --now containerd
 
+
+systemctl status containerd
+如果 containerd 沒有運行，你需要啟動它：
+
+systemctl start containerd
+
+
+
 ＃ 安裝 podman
 sudo yum install -y podman
 
