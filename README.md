@@ -131,6 +131,8 @@ kubeadm config images list --config=init-config.yaml
 # 3. 預先下載映像檔
 kubeadm config images pull --config=init-config.yaml
 
+
+
 # 4. 正式初始化 Kubernetes 叢集
 kubeadm init --config=init-config.yaml
 
