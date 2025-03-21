@@ -63,6 +63,12 @@ openssl-3.2.2-6.el9_5.x86_64
 ## **步驟 2：安裝 containerd**
 
 ```bash
+
+# Add the Docker repository (since containerd.io is part of Docker's dependencies)
+sudo yum install -y yum-utils
+sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+
+
 # 安裝 containerd
 sudo yum install -y containerd.io
 
