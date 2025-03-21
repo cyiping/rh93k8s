@@ -34,7 +34,7 @@ systemctl stop firewalld
 systemctl disable firewalld
 
 cat <<EOF > /etc/sysctl.d/k8s.conf
-net.bridge.bridge-nf-call-ip6tables = 1
+net.ipv4.ip_forward = 1 
 net.bridge.bridge-nf-call-iptables = 1
 EOF
 
@@ -53,16 +53,6 @@ openssh-server-8.7p1-43.el9.x86_64
 openssh-clients-8.7p1-43.el9.x86_64
 openssl-libs-3.2.2-6.el9_5.x86_64
 openssl-3.2.2-6.el9_5.x86_64
-
-
-sudo sysctl -w net.ipv4.ip_forward=1
-
-sudo nano /etc/sysctl.conf
-net.ipv4.ip_forward = 1  #加入這行
-
-sudo sysctl -p
-
-
 
 ```
 
