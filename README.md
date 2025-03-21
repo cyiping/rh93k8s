@@ -17,6 +17,21 @@
 ## **步驟 1：關閉 Swap 及 SELinux ＆ 網路前置作業**
 
 ```bash
+
+yum install -y ipvsadm conntrack sysstat curl
+
+modprobe br_netfilter && modprobe ip_vs
+
+## 無法 ssh login 解法
+[root@master-01 ~]# yum -y install  openssh-server
+
+[root@master-01 ~]# rpm -qa | grep openss
+openssh-8.7p1-43.el9.x86_64
+openssh-server-8.7p1-43.el9.x86_64
+openssh-clients-8.7p1-43.el9.x86_64
+openssl-libs-3.2.2-6.el9_5.x86_64
+openssl-3.2.2-6.el9_5.x86_64
+
 # 關閉 Swap
 sudo swapoff -a
 
@@ -40,30 +55,6 @@ EOF
 
 sysctl --system
 
-yum install -y ipvsadm conntrack sysstat curl
-
-modprobe br_netfilter && modprobe ip_vs
-
-## 無法 ssh login 解法
-[root@master-01 ~]# yum -y install  openssh-server
-
-[root@master-01 ~]# rpm -qa | grep openss
-openssh-8.7p1-43.el9.x86_64
-openssh-server-8.7p1-43.el9.x86_64
-openssh-clients-8.7p1-43.el9.x86_64
-openssl-libs-3.2.2-6.el9_5.x86_64
-openssl-3.2.2-6.el9_5.x86_64
-
-
-sudo sysctl -w net.ipv4.ip_forward=1
-
-sudo nano /etc/sysctl.conf
-net.ipv4.ip_forward = 1  #加入這行
-
-sudo sysctl -p
-
-
-
 ```
 
 ---
@@ -71,12 +62,6 @@ sudo sysctl -p
 ## **步驟 2：安裝 containerd**
 
 ```bash
-
-# Add the Docker repository (since containerd.io is part of Docker's dependencies)
-sudo yum install -y yum-utils
-sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-
-
 # 安裝 containerd
 sudo yum install -y containerd.io
 
@@ -120,6 +105,11 @@ sudo systemctl enable --now kubelet
 ## **步驟 4：初始化 Kubernetes 集群**
 
 ```bash
+
+kubeadm config print init-defaults > init-config.yaml
+kubeadm config images list --config=init-config.yaml
+kubeadm config images pull --config=init-config.yaml
+kubeadm init --config=init-config.yaml
 # 設定 Master 節點 IP（請換成實際 IP）
 MASTER_IP="192.168.1.100"
 
@@ -129,8 +119,6 @@ sudo kubeadm init \
   --apiserver-advertise-address=0.0.0.0 \     # 測試用
   --pod-network-cidr=100.64.0.0/10 \
   --service-cluster-ip-range=10.96.0.0/22
-
-sudo kubeadm init --apiserver-advertise-address=0.0.0.0 --pod-network-cidr=100.64.0.0/10 --service-cidr=10.96.0.0/22 --v=5
 
 
 ```
@@ -150,6 +138,7 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```bash
 # 下載 Flannel YAML 配置檔
 kubectl apply -f https://github.com/flannel-io/flannel/releases/latest/download/kube-flannel.yml
+kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 ```
 
 **檢查 Flannel 是否成功部署**
