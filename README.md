@@ -136,6 +136,9 @@ kubeadm config images pull --config=init-config.yaml
 # 4. 正式初始化 Kubernetes 叢集
 kubeadm init --config=init-config.yaml
 
+kubeadm init --cri-socket=unix:///var/run/containerd/containerd.sock
+
+
 
 # 設定 Master 節點 IP（請換成實際 IP）
 MASTER_IP="192.168.1.100"
