@@ -120,6 +120,19 @@ sudo systemctl enable --now kubelet
 ## **步驟 4：初始化 Kubernetes 集群**
 
 ```bash
+# 1. 產生初始化設定檔
+kubeadm config print init-defaults > init-config.yaml
+
+# 2. 查看 Kubernetes 需要的映像檔
+kubeadm config images list --config=init-config.yaml
+
+# 3. 預先下載映像檔
+kubeadm config images pull --config=init-config.yaml
+
+# 4. 正式初始化 Kubernetes 叢集
+kubeadm init --config=init-config.yaml
+
+
 # 設定 Master 節點 IP（請換成實際 IP）
 MASTER_IP="192.168.1.100"
 
