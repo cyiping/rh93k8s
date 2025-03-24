@@ -164,10 +164,10 @@ MASTER_IP="192.168.1.100"
 sudo kubeadm init \
 #  --apiserver-advertise-address=$MASTER_IP \
   --apiserver-advertise-address=0.0.0.0 \     # 測試用
-  --pod-network-cidr=100.64.0.0/10 \
+  --pod-network-cidr=100.64.0.0/24 \
   --service-cluster-ip-range=10.96.0.0/22
 
-sudo kubeadm init --apiserver-advertise-address=0.0.0.0 --pod-network-cidr=100.64.0.0/10 --service-cidr=10.96.0.0/22  --cri-socket=unix:///var/run/containerd/containerd.sock --v=5
+sudo kubeadm init --apiserver-advertise-address=0.0.0.0 --pod-network-cidr=100.64.0.0/24 --service-cidr=10.96.0.0/22  --cri-socket=unix:///var/run/containerd/containerd.sock --v=5
 
 
 ```
