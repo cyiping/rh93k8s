@@ -126,11 +126,11 @@ modprobe br_netfilter
 # modprobe ip_vs
 
 編輯 /etc/sysctl.conf，並添加以下行：
-```
+
 net.bridge.bridge-nf-call-iptables = 1
 net.bridge.bridge-nf-call-ip6tables = 1
 
-```
+
 
 
 
