@@ -185,8 +185,23 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ## **步驟 5：安裝 Flannel（網路插件）**
 
 ```bash
+--pod-network-cidr=100.64.0.0/10
+
 # 下載 Flannel YAML 配置檔
-kubectl apply -f https://github.com/flannel-io/flannel/releases/latest/download/kube-flannel.yml
+wget https://github.com/flannel-io/flannel/releases/latest/download/kube-flannel.yml
+
+# 改 yml 檔裡面的 network。  (--pod-network-cidr=100.64.0.0/10)
+  net-conf.json: |
+    {
+      "Network": "10.64.0.0/10",
+      "EnableNFTables": false,
+      "Backend": {
+        "Type": "vxlan"
+      }
+    }
+
+
+kubectl apply -f ~/kube-flannel.yml
 ```
 
 **檢查 Flannel 是否成功部署**
