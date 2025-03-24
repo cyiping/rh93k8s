@@ -115,6 +115,25 @@ sudo yum install -y kubelet kubeadm kubectl
 
 # 啟用 kubelet
 sudo systemctl enable --now kubelet
+systemctl enable kubelet
+systemctl enable containerd
+
+echo "br_netfilter" >> /etc/modules-load.d/br_netfilter.conf
+# echo "ip_vs" | sudo tee -a /etc/modules-load.d/ip_vs.conf
+
+
+modprobe br_netfilter
+# modprobe ip_vs
+
+編輯 /etc/sysctl.conf，並添加以下行：
+```
+net.bridge.bridge-nf-call-iptables = 1
+net.bridge.bridge-nf-call-ip6tables = 1
+
+```
+
+
+
 ```
 
 ---
@@ -123,21 +142,18 @@ sudo systemctl enable --now kubelet
 
 ```bash
 # 1. 產生初始化設定檔
-kubeadm config print init-defaults > init-config.yaml
+# kubeadm config print init-defaults > init-config.yaml
 
 # 2. 查看 Kubernetes 需要的映像檔
-kubeadm config images list --config=init-config.yaml
+# kubeadm config images list --config=init-config.yaml
 
 # 3. 預先下載映像檔
-kubeadm config images pull --config=init-config.yaml
+# kubeadm config images pull --config=init-config.yaml
 
 
 
 # 4. 正式初始化 Kubernetes 叢集
-kubeadm init --config=init-config.yaml
-
-systemctl enable kubelet
-
+# kubeadm init --config=init-config.yaml
 
 
 
